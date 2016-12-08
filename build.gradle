@@ -1,0 +1,42 @@
+group 'com.leap.mouse'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+
+def versions = [
+        jdk: '1.7'
+]
+
+// JDK version
+sourceCompatibility = versions.jdk
+
+
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'lib'
+    }
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile files('lib/LeapJava.jar');
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+/**
+ *  Uncomment the following block in order to publish
+ *  the jar file in a different repository (local or remote)
+ *
+ */
+//uploadArchives {
+//    repositories {
+//        flatDir {
+//            dirs '<your folder>'
+//        }
+//    }
+//}
+
+
