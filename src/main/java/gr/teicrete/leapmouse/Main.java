@@ -2,28 +2,26 @@ package gr.teicrete.leapmouse;
 
 /**
  * Created by Anestis Vlasopoulos on 8/12/2016.
+ *
+ * This is the entry point of the application
  */
 
 import com.leapmotion.leap.*;
 
 
-public class Main{
+public class Main {
 
-    public static void main (String[] args)
-    {
+    public static void main (String[] args) {
         ConfiguredListener listener = new ConfiguredListener();
         Controller controller = new Controller();
         controller.addListener(listener);
 
-        try
-        {
+        try {
             System.in.read();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.printf(e.getMessage());
         }
 
         controller.removeListener(listener);
-
     }
 }
