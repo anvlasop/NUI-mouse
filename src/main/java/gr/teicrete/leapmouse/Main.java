@@ -19,7 +19,7 @@ public class Main {
         try {
             System.in.read();
         } catch (Exception e) {
-            System.out.printf(e.getMessage());
+            System.out.printf("Exception occured: " + e.getMessage());
         }
 
         controller.removeListener(listener);

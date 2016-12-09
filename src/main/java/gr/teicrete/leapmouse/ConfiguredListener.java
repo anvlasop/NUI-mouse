@@ -22,9 +22,19 @@ public class ConfiguredListener extends Listener{
      * @param controller
      */
     public void onConnect(Controller controller) {
+
+        /**
+         * By default the leap motion API has no permission to run in the background.
+         * That is why the below three policy flags are used.
+         */
+
+        controller.setPolicy(Controller.PolicyFlag.POLICY_BACKGROUND_FRAMES);
+        controller.setPolicy(Controller.PolicyFlag.POLICY_IMAGES);
+        controller.setPolicy(Controller.PolicyFlag.POLICY_OPTIMIZE_HMD);
+
         controller.enableGesture(Gesture.Type.TYPE_CIRCLE);
         controller.enableGesture(Gesture.Type.TYPE_SCREEN_TAP);
-        controller.enableGesture(Gesture.Type.TYPE_SWIPE);
+        //controller.enableGesture(Gesture.Type.TYPE_SWIPE);
     }
 
     /**
@@ -58,7 +68,7 @@ public class ConfiguredListener extends Listener{
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
-                } else /*check if the cycle is counterclockwise*/ {
+                } else /*check if the circle is counterclockwise*/ {
                     robot.mouseWheel(1);
                     try {
                         Thread.sleep(50);
