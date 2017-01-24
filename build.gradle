@@ -10,17 +10,6 @@ def versions = [
 
 sourceCompatibility = versions.jdk
 
-task fatJar(type: Jar) {
-    manifest {
-        attributes 'Implementation-Title': 'Leap Mouse',
-                'Implementation-Version': version,
-                'Main-Class': 'gr.teicrete.leapmouse'
-    }
-    baseName = project.name + '-all'
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
-}
-
 repositories {
     mavenCentral()
     flatDir {
@@ -32,6 +21,20 @@ dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.3.11'
     compile files('lib/LeapJava.jar');
     testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+task fatJar(type: Jar) {
+
+
+    manifest {
+        attributes 'Implementation-Title': 'Leap Mouse',
+                'Implementation-Version': version,
+                'Main-Class': 'gr.teicrete.leapmouse.Main'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+    with jar
 }
 
 apply plugin: 'application'
